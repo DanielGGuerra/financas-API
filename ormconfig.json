@@ -1,0 +1,20 @@
+{
+   "type": "sqlite",
+   "database": "src/infrastruture/database/database.sqlite",
+   "host": "localhost",
+   "port": 3306,
+   "username": "apiFinancas",
+   "password": "123456",
+   "synchronize": true,
+   "logging": false,
+   "entities": [
+      "src/modules/**/entities/*.ts"
+   ],
+   "migrations": [
+      "src/infrastruture/database/migrations/*.ts"
+   ],
+   "cli": {
+      "entitiesDir": "src/modules/**/entities",
+      "migrationsDir": "src/infrastruture/database/migrations"
+   }
+}
