@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { Repository } from "typeorm";
 import CreateUserService from "../services/CreateUserService";
 import ListUsersService from "../services/ListUsersService";
 
@@ -9,13 +8,13 @@ export default class UsersController {
 
         const userService = new CreateUserService();
 
-        const user = userService.execute({
+        const user = await userService.execute({
             name,
             email,
             password,
         });
 
-        return response.status(200).json(user);
+        return response.status(200).json({user});
     }
 
     public async listUsers(request: Request, response: Response) {
