@@ -2,6 +2,7 @@ import { getCustomRepository } from "typeorm";
 import HttpRequestError from "../../err/HttpRequestError";
 import { User } from "../entities/User";
 import UsersRepository from "../repositories/UsersRepository";
+import { hash } from 'bcrypt'
 
 interface IUser {
     name: string;
@@ -22,11 +23,13 @@ export default class CreateUserService {
                 message: 'Existe outro cadastro com email informado'
             });
         }
+        
+        const pwHash = await hash(password, 10)
 
         const user = usersRepositories.create({
             name,
             email,
-            password,
+            password: pwHash,
         });
 
         await usersRepositories.save(user);
