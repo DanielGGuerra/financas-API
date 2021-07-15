@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import CreateUserService from "../services/CreateUserService";
+import FindUserService from "../services/FindUserService";
 import ListUsersService from "../services/ListUsersService";
 
 export default class UsersController {
@@ -23,5 +24,15 @@ export default class UsersController {
         const users = await userService.execute();
 
         return response.status(200).json(users);
+    }
+
+    public async findUser(request: Request, response: Response) {
+        const { id } = request.params;
+        
+        const findUserService = new FindUserService();
+
+        const user = await findUserService.execute(id);
+
+        return response.status(200).json(user);
     }
 }

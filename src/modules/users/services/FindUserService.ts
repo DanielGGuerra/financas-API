@@ -2,7 +2,7 @@ import { getCustomRepository } from "typeorm";
 import { User } from "../entities/User";
 import UsersRepository from "../repositories/UsersRepository";
 
-class FindUserService {
+export default class FindUserService {
     public async execute(id: string): Promise<User | undefined> {
         const userRepositories = getCustomRepository(UsersRepository);
 
