@@ -19,3 +19,5 @@ function enseureAuth(request: Request, response: Response, next: NextFunction) {
         return response.status(401).end();
     }
 }
+
+export default enseureAuth;
