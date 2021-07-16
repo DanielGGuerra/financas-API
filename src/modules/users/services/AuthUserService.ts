@@ -7,11 +7,15 @@ import { compare } from 'bcrypt';
 interface IAuthUser {
     email: string;
     password: string;
-    token?: string;
+    token?: Itoken;
+}
+
+interface Itoken {
+    token: string;
 }
 
 class AuthUserService {
-    public async execute({ email, password }: IAuthUser): Promise<IAuthUser> {
+    public async execute({ email, password }: IAuthUser): Promise<Itoken> {
         const usersRepositories = getCustomRepository(UsersRepository);
 
         const user = await usersRepositories.findByEmail(email);
@@ -43,7 +47,7 @@ class AuthUserService {
             }
         ); 
 
-        return { email, password, token }
+        return { token }
     }
 }
 
