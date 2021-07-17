@@ -1,6 +1,7 @@
 import { Between, getCustomRepository } from "typeorm";
 import { Moviment } from "../entities/Moviment";
 import { MovimentsRepositories } from "../repositories/MovimentsRepositories";
+import { parseISO, addDays } from 'date-fns';
 
 interface FindMovimentsByUser {
     user_id: string;
@@ -16,12 +17,12 @@ export class FindMovimentsByUserService {
         }: FindMovimentsByUser
     ): Promise<Moviment[]> {
         const movimentsRepositories = getCustomRepository(MovimentsRepositories);
-
+        
         const moviments = await movimentsRepositories.find({
             where: {
                 user_id,
-                date_moviment: Between(start, final),
-            }         
+                date_moviment: Between(start, final)
+            },
         });
         
         return moviments;
