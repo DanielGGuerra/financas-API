@@ -7,7 +7,7 @@ export class Moviment {
     id!: string;
 
     @Column('user_id')
-    user!: string;
+    user_id!: string;
 
     @Column()
     isEntrance!: boolean;
@@ -17,6 +17,9 @@ export class Moviment {
 
     @Column()
     description!: string;
+
+    @Column()
+    date_moviment!: Date;
 
     @CreateDateColumn()
     create_at!: Date;
