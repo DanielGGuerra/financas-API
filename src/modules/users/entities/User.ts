@@ -28,6 +28,9 @@ class User {
         if(!this.id) {
             this.id = uuid();
         }
+        if(!this.balance) {
+            this.balance = 0;
+        }
     }
 }
 

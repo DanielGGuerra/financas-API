@@ -8,6 +8,7 @@ export class addColumnBalance1626524892599 implements MigrationInterface {
             {
                 name: 'balance',
                 type: 'decimal(10,2)',
+                default: 0,
             } as TableColumn
         )
     }
