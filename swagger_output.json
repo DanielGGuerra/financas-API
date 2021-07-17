@@ -2,17 +2,43 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST API",
-    "description": ""
+    "title": "Financas API",
+    "description": "Documentação de utilização da API"
   },
-  "host": "localhost:3000",
+  "host": "localhost:3333",
   "basePath": "/",
-  "tags": [],
-  "schemes": [
-    "http"
+  "tags": [
+    {
+      "name": "User",
+      "description": "Endpoints"
+    }
   ],
-  "consumes": [],
-  "produces": [],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apikey",
+      "name": "api_key",
+      "in": "header"
+    },
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+      "flow": "implicit",
+      "scopes": {
+        "read_pets": "read your pets",
+        "write_pets": "modify pets in your account"
+      }
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/users/": {
       "get": {
@@ -53,5 +79,19 @@
       }
     }
   },
-  "definitions": {}
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Daniel Guerra"
+        },
+        "email": {
+          "type": "string",
+          "example": "danielguerra@gmail.com"
+        }
+      }
+    }
+  }
 }
