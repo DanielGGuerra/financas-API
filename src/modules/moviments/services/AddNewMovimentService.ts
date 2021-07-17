@@ -43,6 +43,13 @@ export class AddNewMovimentService {
         const movimentsRepositories = getCustomRepository(MovimentsRepositories);
         
         if(!isEntrance) {
+            if(user.balance <= value) {
+                throw new HttpRequestError({
+                    status: 400,
+                    name: 'MovimentError',
+                    message: 'Usuario tem saldo inferior ao valor informado'
+                });
+            }
             user.balance =- value;
         } else {
             user.balance =+ value;
