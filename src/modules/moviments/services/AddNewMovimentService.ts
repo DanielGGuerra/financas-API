@@ -3,7 +3,7 @@ import HttpRequestError from "../../err/HttpRequestError";
 import UsersRepository from "../../users/repositories/UsersRepository";
 import { Moviment } from "../entities/Moviment";
 import { MovimentsRepositories } from "../repositories/MovimentsRepositories";
-import { isAfter } from 'date-fns';
+import { isAfter, parseISO } from 'date-fns';
 
 interface IMoviment {
     user_id: string;
@@ -43,21 +43,21 @@ export class AddNewMovimentService {
         const movimentsRepositories = getCustomRepository(MovimentsRepositories);
         
         if(!isEntrance) {
-            if(user.balance <= value) {
+            if(user.balance < value || (user.balance - value) < 0) {
                 throw new HttpRequestError({
                     status: 400,
                     name: 'MovimentError',
                     message: 'Usuario tem saldo inferior ao valor informado'
                 });
             }
-            user.balance =- value;
+            user.balance = user.balance - value;
         } else {
-            user.balance =+ value;
+            user.balance = + user.balance + value;
         }
 
         const dateNow = Date.now();
-
-        if(isAfter(date_moviment, dateNow)){
+    
+        if(isAfter(parseISO(date_moviment.toString()), dateNow)){
             throw new HttpRequestError({
                 status: 400,
                 name: 'MovimentError',
