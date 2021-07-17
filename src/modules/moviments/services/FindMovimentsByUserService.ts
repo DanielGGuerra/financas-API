@@ -1,4 +1,6 @@
 import { Between, getCustomRepository } from "typeorm";
+import router from "../../../routes";
+import { Moviment } from "../entities/Moviment";
 import { MovimentsRepositories } from "../repositories/MovimentsRepositories";
 
 interface FindMovimentsByUser {
@@ -9,11 +11,11 @@ interface FindMovimentsByUser {
 
 export class FindMovimentsByUserService {
     public async execute({
-        user_id,
-        start,
-        final
-    }: FindMovimentsByUser
-    ) {
+            user_id,
+            start,
+            final
+        }: FindMovimentsByUser
+    ): Promise<Moviment[]> {
         const movimentsRepositories = getCustomRepository(MovimentsRepositories);
 
         const moviments = await movimentsRepositories.find({
@@ -24,6 +26,7 @@ export class FindMovimentsByUserService {
                 Between(start, final),
             ],          
         });
-
+        
+        return moviments;
     }
 }
