@@ -6,7 +6,7 @@ export class Moviment {
     @PrimaryColumn()
     id!: string;
 
-    @Column('user_id')
+    @Column()
     user_id!: string;
 
     @Column()

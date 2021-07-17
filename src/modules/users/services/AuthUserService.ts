@@ -11,6 +11,7 @@ interface IAuthUser {
 }
 
 interface Itoken {
+    id: string;
     token: string;
 }
 
@@ -47,7 +48,7 @@ class AuthUserService {
             }
         ); 
 
-        return { token }
+        return { id: user.id, token }
     }
 }
 
