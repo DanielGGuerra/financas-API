@@ -1,5 +1,4 @@
 import { Between, getCustomRepository } from "typeorm";
-import router from "../../../routes";
 import { Moviment } from "../entities/Moviment";
 import { MovimentsRepositories } from "../repositories/MovimentsRepositories";
 
@@ -19,12 +18,10 @@ export class FindMovimentsByUserService {
         const movimentsRepositories = getCustomRepository(MovimentsRepositories);
 
         const moviments = await movimentsRepositories.find({
-            where: [
-                {
-                    user_id,
-                },
-                Between(start, final),
-            ],          
+            where: {
+                user_id,
+                date_moviment: Between(start, final),
+            }         
         });
         
         return moviments;

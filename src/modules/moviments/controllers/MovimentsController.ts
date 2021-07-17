@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { stringify } from "uuid";
 import { AddNewMovimentService } from "../services/AddNewMovimentService";
 import { FindMovimentsByUserService } from "../services/FindMovimentsByUserService";
 import { FindMovimentService } from "../services/FindMovimentService";
@@ -28,11 +27,11 @@ export class MovimentsController {
     }
 
     public async find(request: Request, response: Response): Promise<Response> {
-        const { user_id } = request.body;
+        const { id } = request.params;
 
          const findMoviment = new FindMovimentService();
 
-         const moviment = findMoviment.execute(user_id);
+         const moviment = await findMoviment.execute(id);
 
          return response.status(200).json(moviment);
     }
@@ -41,8 +40,8 @@ export class MovimentsController {
         const { user_id, start, final } = request.body;
 
         const findMoviments = new FindMovimentsByUserService();
-
-        const moviments = findMoviments.execute({
+        
+        const moviments = await findMoviments.execute({
             user_id,
             start,
             final
