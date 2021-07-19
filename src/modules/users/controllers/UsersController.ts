@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AlterUserService } from "../services/AlterUserService";
 import CreateUserService from "../services/CreateUserService";
 import FindUserService from "../services/FindUserService";
 import ListUsersService from "../services/ListUsersService";
@@ -16,6 +17,16 @@ export default class UsersController {
         });
 
         return response.status(200).json({user});
+    }
+
+    public async alter(request: Request, response: Response) {
+        const userParams = request.body;
+
+        const userService = new AlterUserService();
+
+        const alterUser = await userService.execute(userParams);
+
+        return response.status(200).json(alterUser);
     }
 
     public async listUsers(request: Request, response: Response) {

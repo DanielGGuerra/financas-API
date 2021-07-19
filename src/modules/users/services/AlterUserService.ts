@@ -10,7 +10,7 @@ interface IUser {
     password?: string;
 }
 
-class AlterUserService {
+export class AlterUserService {
     public async execute(userParams: IUser): Promise<User> {
         const usersRepositories = getCustomRepository(UsersRepository);
 
