@@ -8,5 +8,6 @@ const movimentsController = new MovimentsController();
 movimentRoutes.post('/', movimentsController.create);
 movimentRoutes.get('/find/:id', movimentsController.find);
 movimentRoutes.post('/find', movimentsController.findByUser);
+movimentRoutes.patch('/', movimentsController.alter);
 
 export default movimentRoutes;

@@ -32,6 +32,10 @@ class User {
             this.balance = 0;
         }
     }
+
+    setBalance(value: number) {
+        this.balance = value;
+    }
 }
 
 export { User }

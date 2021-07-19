@@ -52,7 +52,7 @@ export class AddNewMovimentService {
             }
             user.balance = user.balance - value;
         } else {
-            user.balance = + user.balance + value;
+            user.balance = user.balance + value;
         }
 
         const dateNow = Date.now();

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { AddNewMovimentService } from "../services/AddNewMovimentService";
+import { AlterMovimentService } from "../services/AlterMovimentService";
 import { FindMovimentsByUserService } from "../services/FindMovimentsByUserService";
 import { FindMovimentService } from "../services/FindMovimentService";
 
@@ -24,6 +25,16 @@ export class MovimentsController {
         });
 
         return response.status(200).json(moviment);
+    }
+
+    public async alter(request: Request, response: Response): Promise<Response> {
+        const moviment = request.body;
+
+        const alterMoviment = new AlterMovimentService();
+
+        const newMoviment = await alterMoviment.execute(moviment);
+
+        return response.status(200).json(newMoviment);
     }
 
     public async find(request: Request, response: Response): Promise<Response> {
