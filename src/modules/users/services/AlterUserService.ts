@@ -13,6 +13,14 @@ interface IUser {
 export class AlterUserService {
     public async execute(userParams: IUser): Promise<User> {
         const usersRepositories = getCustomRepository(UsersRepository);
+        
+        if(userParams.password) {
+            throw new HttpRequestError({
+                status: 400,
+                name: 'AlterUserError',
+                message: 'Não é possivel editar senha'
+            });
+        }
 
         const user = await usersRepositories.findOne({
             where: {
@@ -27,6 +35,7 @@ export class AlterUserService {
                 message: 'Usuario não encontrado'
             });
         }
+
 
         const userAlter = Object.assign(user, userParams);
 
