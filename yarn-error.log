@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/local/bin/yarn add -D @types/swagger-autogen
+  /usr/bin/node /usr/local/bin/yarn add nodemails
 
 PATH: 
   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fswagger-autogen: Not found
+  Error: https://registry.yarnpkg.com/nodemails: Not found
       at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66988:18)
       at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140662:22)
       at Request.emit (events.js:198:13)
@@ -35,10 +35,11 @@ npm manifest:
     "scripts": {
       "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
       "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
-      "start-gendoc": "node swagger.js"
+      "start-gendoc": "node ./src/swagger.ts"
     },
     "dependencies": {
       "bcrypt": "^5.0.1",
+      "date-fns": "^2.22.1",
       "express": "^4.17.1",
       "express-async-errors": "^3.1.1",
       "jsonwebtoken": "^8.5.1",
@@ -569,6 +570,11 @@ Lockfile:
     integrity sha1-hTz6D3y+L+1d4gMmuN1YEDX24vA=
     dependencies:
       assert-plus "^1.0.0"
+  
+  date-fns@^2.22.1:
+    version "2.22.1"
+    resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.22.1.tgz#1e5af959831ebb1d82992bf67b765052d8f0efc4"
+    integrity sha512-yUFPQjrxEmIsMqlHhAhmxkuH769baF21Kk+nZwZGyrMoyLA+LugaQtC0+Tqf9CBUUULWwUJt6Q5ySI3LJDDCGg==
   
   debug@2.6.9:
     version "2.6.9"
